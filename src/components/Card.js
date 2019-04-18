@@ -16,25 +16,27 @@ export default ({ pokemon }) => {
   const heightIn = Math.floor((height * 3.93701) % 12);
   const heightFt = Math.floor((height * 3.93701) / 12);
   const displayHeight = `${heightFt} ft ${heightIn} in`;
+  const mainImage = sprites.front_default || '../images/pokemon.jpg';
+  const secondImage = sprites.front_shiny || '../images/pokemon.jpg';
 
   return (
     <div className="card card_poke" key={id}>
       <div className="card-content">
-        <img src={sprites.front_default} alt={name} />
+        <img className="card_image" src={mainImage} alt={name} />
         <span className="card-title activator grey-text text-darken-4">
           {name}
           <i className="material-icons right">more_vert</i>
         </span>
         <p>
-          Weight:
+          Weight:&nbsp;
           {displayWeight}
         </p>
         <p>
-          Height:
+          Height:&nbsp;
           {displayHeight}
         </p>
         <p>
-          Base Experience:
+          Base Experience:&nbsp;
           {baseExperience}
         </p>
       </div>
@@ -43,7 +45,7 @@ export default ({ pokemon }) => {
           {name}
           <i className="material-icons right">close</i>
         </span>
-        <img src={sprites.front_shiny} alt={name} />
+        <img src={secondImage} alt={name} />
         <p>Abilities:</p>
         <ul>
           {abilities.map(a => (<li key={a.ability.name}>{a.ability.name}</li>))}

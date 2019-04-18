@@ -53,6 +53,9 @@ nav ul a {
 .card_poke p {
   color: #8c8a8a;
 }
+.card_image {
+  min-height: 96px;
+}
 @media (max-width: 1020px) {
   .card_poke {
     width: 31%;
