@@ -10,7 +10,6 @@ class App extends Component {
         <Header />
         <h1>Pokemon</h1>
         <CardList />
-        Pokemon
       </div>
     );
   }

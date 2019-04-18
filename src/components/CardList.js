@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import { connect } from 'react-redux';
-import fetchPokemon from '../actions';
+import { fetchPokemon, fetchRandom } from '../actions';
 
 const DEFAULT_POKEMON = [
   7,
@@ -9,41 +9,33 @@ const DEFAULT_POKEMON = [
   1,
 ];
 
+
 class CardList extends Component {
   componentDidMount() {
-    console.log(this.props, 'props');
     DEFAULT_POKEMON.map(n => this.props.fetchPokemon(n));
   }
 
   renderList = () => {
     return this.props.pokemon.map(pokemon => {
       return (
-        <div className="card card_poke" key={pokemon.id}>
-          <div className="card-content">
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            <span class="card-title activator grey-text text-darken-4">{pokemon.name}</span>
-            <p>
-              Weight: {pokemon.weight}
-            </p>
-            <p>
-              Height: {pokemon.height}
-            </p>
-            <p>
-              Weight: {pokemon.weight}
-            </p>
-            <p>
-              Base Experience: {pokemon.base_experience}
-            </p>
-          </div>
-        </div>
+        <Card key={pokemon.id} pokemon={pokemon} />
       )
     })
   };
 
+  getRandom = () => {
+    this.props.fetchRandom();
+  };
+
   render() {
     return (
-      <div className="cards_container">
-        {this.renderList()}
+      <div className="cards_list">
+        <div className="cards_container">
+          {this.renderList()}
+        </div>
+        <div className="cards_get_random">
+          <a onClick={this.getRandom} className="waves-effect waves-light btn">Get Random Pokemon</a>
+        </div>
       </div>
     );
   }
@@ -55,4 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPokemon })(CardList);
+export default connect(mapStateToProps, { fetchPokemon, fetchRandom })(CardList);

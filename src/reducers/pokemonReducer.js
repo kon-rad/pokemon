@@ -1,11 +1,12 @@
-import { FETCH_POKEMON } from '../actions/types';
+import { FETCH_POKEMON, FETCH_RANDOM } from '../actions/types';
 
 export default (state = {}, action) => {
-  if (action.type === FETCH_POKEMON) {
-    console.log({ ...state, [action.payload.id]: action.payload });
-
-    return { ...state, [action.payload.id]: action.payload };
+  switch (action.type) {
+    case FETCH_POKEMON:
+      return { ...state, [action.payload.id]: action.payload };
+    case FETCH_RANDOM:
+      return { ...state, random: action.payload };
+    default:
+      return state;
   }
-
-  return state;
 };
