@@ -1,5 +1,6 @@
-root {
+:root {
   --yellow:  #FFCB05;
+  --yellow-hover: #ff9105;
   --blue:  #3D7DCA;
   --navy-blue:  #003A70;
 
@@ -25,16 +26,33 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--blue);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+nav {
+  background-color: var(--yellow);
+  color: var(--navy-blue);
+}
+nav .brand-logo {
+  color: var(--navy-blue);
+}
+nav ul a {
+  color: var(--navy-blue);
+}
+.btn, .btn-large, .btn-small {
+  background-color: var(--yellow);
+  color: var(--navy-blue);
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+  background-color: var(--yellow-hover);
+}
 .cards_container {
-  max-width: 800px;
-
+  max-width: 1000px;
   margin: 10px auto;
   display: flex;
   flex-wrap: wrap;
@@ -44,4 +62,23 @@ code {
   border-radius: 10px;
   width: 23%;
   margin: 4px 1%;
+}
+.card_poke p {
+  color: #8c8a8a;
+}
+@media (max-width: 1020px) {
+  .card_poke {
+    width: 31%;
+  }
+}
+@media (max-width: 740px) {
+  .card_poke {
+    width: 48%;
+  }
+}
+@media (max-width: 500px) {
+  .card_poke {
+    width: 96%;
+    margin: 4px 2%;
+  }
 }
