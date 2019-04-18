@@ -3,12 +3,12 @@
 
 to run:
 
-`git clone https://github.com/kon-rad/pokemon.git`
+1. `git clone https://github.com/kon-rad/pokemon.git`
 
-`cd pokemon`
+2. `cd pokemon`
 
-`yarn`
+3. `yarn` or `npm install`
 
-`yarn run`
+4. `yarn run start` or `npm run start`
 
-navigate to localhost://8080
+5. Open a new browser page to localhost://3000
