@@ -10,12 +10,13 @@ export default ({ pokemon }) => {
     sprites,
     id,
   } = pokemon;
-  // the weight is in hectograms; convert to lbs
+  // the default weight is in hectograms; convert to lbs
   const displayWeight = `${(weight * 0.220462).toFixed(2)} lbs`;
-  // the height is in decimeters; convert to ft, in
+  // the default height is in decimeters; convert to ft, in
   const heightIn = Math.floor((height * 3.93701) % 12);
   const heightFt = Math.floor((height * 3.93701) / 12);
   const displayHeight = `${heightFt} ft ${heightIn} in`;
+
   return (
     <div className="card card_poke" key={id}>
       <div className="card-content">
