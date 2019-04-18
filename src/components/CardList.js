@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import { connect } from 'react-redux';
-import fetchPokemon from '../../actions';
+import fetchPokemon from '../actions';
+
+const DEFAULT_POKEMON = [
+  7,
+  4,
+  1,
+];
 
 class CardList extends Component {
   componentDidMount() {
     console.log(this.props, 'props');
-    this.props.fetchPokemon(this.props.match.params.id);
+    DEFAULT_POKEMON.map(n => this.props.fetchPokemon(n));
   }
 
   renderList = () => {
     return this.props.pokemon.map(pokemon => {
       return (
-        <div className="card">
-          <p>{pokemon.name}</p>
+        <div className="card card_poke" key={pokemon.id}>
+          <div className="card-content">
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <span class="card-title activator grey-text text-darken-4">{pokemon.name}</span>
+            <p>
+              Weight: {pokemon.weight}
+            </p>
+            <p>
+              Height: {pokemon.height}
+            </p>
+            <p>
+              Weight: {pokemon.weight}
+            </p>
+            <p>
+              Base Experience: {pokemon.base_experience}
+            </p>
+          </div>
         </div>
       )
     })
@@ -22,7 +43,6 @@ class CardList extends Component {
   render() {
     return (
       <div className="cards_container">
-        <h1>Pokemon</h1>
         {this.renderList()}
       </div>
     );
