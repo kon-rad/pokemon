@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Card from './Card';
 import { connect } from 'react-redux';
+import Card from './Card';
 import { fetchPokemon, fetchRandom } from '../actions';
 
 const DEFAULT_POKEMON = [
@@ -12,19 +12,18 @@ const DEFAULT_POKEMON = [
 
 class CardList extends Component {
   componentDidMount() {
-    DEFAULT_POKEMON.map(n => this.props.fetchPokemon(n));
+    const { fetchPokemonAction } = this.props;
+    DEFAULT_POKEMON.map(n => fetchPokemonAction(n));
   }
 
   renderList = () => {
-    return this.props.pokemon.map(pokemon => {
-      return (
-        <Card key={pokemon.id} pokemon={pokemon} />
-      )
-    })
+    const { pokemon } = this.props;
+    return pokemon.map(poke => <Card key={poke.id} pokemon={poke} />);
   };
 
   getRandom = () => {
-    this.props.fetchRandom();
+    const { fetchRandomAction } = this.props;
+    fetchRandomAction();
   };
 
   render() {
@@ -34,17 +33,14 @@ class CardList extends Component {
           {this.renderList()}
         </div>
         <div className="cards_get_random">
-          <a onClick={this.getRandom} className="waves-effect waves-light btn">Get Random Pokemon</a>
+          <button type="button" onClick={this.getRandom} className="waves-effect waves-light btn">Get Random Pokemon</button>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    pokemon: Object.values(state.pokemon),
-  };
-};
-
+const mapStateToProps = state => ({
+  pokemon: Object.values(state.pokemon),
+});
 export default connect(mapStateToProps, { fetchPokemon, fetchRandom })(CardList);

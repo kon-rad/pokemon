@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  parser: 'babel-eslint',
   extends: 'airbnb',
   globals: {
     Atomics: 'readonly',
@@ -19,5 +20,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/prop-types': 0,
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
   },
 };

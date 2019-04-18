@@ -1,40 +1,53 @@
 import React from 'react';
 
-export default (props) => {
+export default ({ pokemon }) => {
+  const {
+    name,
+    height,
+    weight,
+    base_experience: baseExperience,
+    abilities,
+    sprites,
+    id,
+  } = pokemon;
   // the weight is in hectograms; convert to lbs
-  const weight = (props.pokemon.weight * 0.220462).toFixed(2) + ' lbs';
+  const displayWeight = `${(weight * 0.220462).toFixed(2)} lbs`;
   // the height is in decimeters; convert to ft, in
-  const heightIn = Math.floor((props.pokemon.height * 3.93701) % 12 );
-  const heightFt = Math.floor((props.pokemon.height * 3.93701) / 12);
-  const height = heightFt + ' ft ' + heightIn + ' in';
+  const heightIn = Math.floor((height * 3.93701) % 12);
+  const heightFt = Math.floor((height * 3.93701) / 12);
+  const displayHeight = `${heightFt} ft ${heightIn} in`;
   return (
-    <div className="card card_poke" key={props.pokemon.id}>
+    <div className="card card_poke" key={id}>
       <div className="card-content">
-        <img src={props.pokemon.sprites.front_default} alt={props.pokemon.name}/>
+        <img src={sprites.front_default} alt={name} />
         <span className="card-title activator grey-text text-darken-4">
-          {props.pokemon.name} <i className="material-icons right">more_vert</i>
+          {name}
+          <i className="material-icons right">more_vert</i>
         </span>
         <p>
-          Weight: {weight}
+          Weight:
+          {displayWeight}
         </p>
         <p>
-          Height: {height}
+          Height:
+          {displayHeight}
         </p>
         <p>
-          Base Experience: {props.pokemon.base_experience}
+          Base Experience:
+          {baseExperience}
         </p>
       </div>
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
-          {props.pokemon.name}
+          {name}
           <i className="material-icons right">close</i>
         </span>
-        <img src={props.pokemon.sprites.front_shiny} alt={props.pokemon.name}/>
+        <img src={sprites.front_shiny} alt={name} />
         <p>Abilities:</p>
         <ul>
-          {props.pokemon.abilities.map(a => (<li key={a.ability.name}>{a.ability.name}</li>))}
+          {abilities.map(a => (<li key={a.ability.name}>{a.ability.name}</li>))}
         </ul>
       </div>
     </div>
   );
-}
+};
