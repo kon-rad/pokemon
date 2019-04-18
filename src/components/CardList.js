@@ -3,16 +3,11 @@ import { connect } from 'react-redux';
 import Card from './Card';
 import { fetchPokemon, fetchRandom } from '../actions';
 
-const DEFAULT_POKEMON = [
-  7,
-  4,
-  1,
-];
-
+const DEFAULT_POKEMON = [7, 4, 1];
 
 class CardList extends Component {
   componentDidMount() {
-    const { fetchPokemonAction } = this.props;
+    const { fetchPokemon: fetchPokemonAction } = this.props;
     DEFAULT_POKEMON.map(n => fetchPokemonAction(n));
   }
 
@@ -22,7 +17,7 @@ class CardList extends Component {
   };
 
   getRandom = () => {
-    const { fetchRandomAction } = this.props;
+    const { fetchRandom: fetchRandomAction } = this.props;
     fetchRandomAction();
   };
 
